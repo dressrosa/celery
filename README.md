@@ -1,0 +1,3 @@
+# activemqWithSpring
+activemq和spring结合使用demo
+需在本地启动一个activemq客户端

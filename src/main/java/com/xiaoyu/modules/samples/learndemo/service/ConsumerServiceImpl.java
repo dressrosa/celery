@@ -1,7 +1,7 @@
 /**
  * 不要因为走了很远就忘记当初出发的目的:whatever happened,be yourself
  */
-package com.xiaoyu.modules.biz.activemq;
+package com.xiaoyu.modules.samples.learndemo.service;
 
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
@@ -13,12 +13,14 @@ import javax.jms.MessageListener;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.jms.Topic;
+
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import com.xiaoyu.common.utils.ActivemqUtils;
-import com.xiaoyu.modules.api.ConsumerService;
+
+import com.xiaoyu.core.ActivemqFactory;
+import com.xiaoyu.modules.samples.learndemo.api.ConsumerService;
 
 @Service
 public class ConsumerServiceImpl implements ConsumerService {
@@ -29,7 +31,7 @@ public class ConsumerServiceImpl implements ConsumerService {
 		MessageConsumer consumer = null;
 		Connection connection = null;
 		try {
-			ConnectionFactory factory = ActivemqUtils.Factory.getFactory();
+			ConnectionFactory factory = ActivemqFactory.INSTANCE.factory();
 
 			connection = factory.createConnection();
 			connection.start();// 消费者这句不能空 否则接收不到
@@ -79,14 +81,14 @@ public class ConsumerServiceImpl implements ConsumerService {
 		return " (xiaoyu.second:)" + msg;
 	}
 
-	@Scheduled(fixedDelay = 10000)
+	@Scheduled(fixedRate = 10000)
 	@Override
 	public void receiveWithTopic() {
 		Topic topic = null;
 		MessageConsumer consumer = null;
 		Connection connection = null;
 		try {
-			ConnectionFactory factory = ActivemqUtils.Factory.getFactory();
+			ConnectionFactory factory = ActivemqFactory.INSTANCE.factory();
 			connection = factory.createConnection();
 			connection.start();
 			final Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);

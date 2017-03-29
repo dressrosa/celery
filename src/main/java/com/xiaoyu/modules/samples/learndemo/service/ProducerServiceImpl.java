@@ -1,7 +1,7 @@
 /**
  * 不要因为走了很远就忘记当初出发的目的:whatever happened,be yourself
  */
-package com.xiaoyu.modules.biz.activemq;
+package com.xiaoyu.modules.samples.learndemo.service;
 
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
@@ -14,13 +14,15 @@ import javax.jms.Queue;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.jms.Topic;
+
 import org.apache.activemq.command.ActiveMQQueue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsMessagingTemplate;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Service;
-import com.xiaoyu.common.utils.ActivemqUtils;
-import com.xiaoyu.modules.api.ProducerService;
+
+import com.xiaoyu.core.ActivemqFactory;
+import com.xiaoyu.modules.samples.learndemo.api.ProducerService;
 
 @Service
 @EnableScheduling
@@ -34,7 +36,7 @@ public class ProducerServiceImpl implements ProducerService {
 
 	@Override
 	public void sendNoSpringJms(String msg) {
-		ConnectionFactory factory = ActivemqUtils.Factory.getFactory();
+		ConnectionFactory factory = ActivemqFactory.INSTANCE.factory();
 
 		Connection connection = null;
 		Session session = null;
@@ -76,7 +78,7 @@ public class ProducerServiceImpl implements ProducerService {
 	@Override
 	public void sendWithTopic(String msg) {
 
-		ConnectionFactory factory = ActivemqUtils.Factory.getFactory();
+		ConnectionFactory factory = ActivemqFactory.INSTANCE.factory();
 		Connection connection = null;
 		try {
 			connection = factory.createConnection();

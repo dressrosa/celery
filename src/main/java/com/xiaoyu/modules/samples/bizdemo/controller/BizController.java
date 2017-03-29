@@ -1,0 +1,30 @@
+/*
+ *   唯有读书,不庸不扰
+ */
+package com.xiaoyu.modules.samples.bizdemo.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.xiaoyu.modules.samples.bizdemo.api.BizService;
+
+/**
+ * 2017年3月29日下午5:33:15
+ * 
+ * @author xiaoyu
+ * @description
+ * @version 1.0
+ */
+@RestController
+public class BizController {
+
+	@Autowired
+	private BizService bizService;
+
+	@RequestMapping("register")
+	public String register(@RequestParam(required = true) String phone) {
+		return this.bizService.register(phone);
+	}
+}

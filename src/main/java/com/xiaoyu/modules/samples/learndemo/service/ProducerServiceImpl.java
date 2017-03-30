@@ -25,13 +25,13 @@ import com.xiaoyu.core.ActivemqFactory;
 import com.xiaoyu.modules.samples.learndemo.api.ProducerService;
 
 @Service
-@EnableScheduling
+//@EnableScheduling
 public class ProducerServiceImpl implements ProducerService {
 
 	@Autowired
 	private JmsMessagingTemplate template;
 
-	@Autowired
+	@Autowired(required=false)
 	private Queue queue;
 
 	@Override

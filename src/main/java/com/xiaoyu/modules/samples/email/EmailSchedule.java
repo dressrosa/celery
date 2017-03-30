@@ -11,7 +11,7 @@ public class EmailSchedule {
 
 	private static final EmailHandler handler = EmailHandler.instance();
 
-	@Scheduled(fixedRate = 5000) // 没几秒执行一次
+	@Scheduled(fixedRate = 5000) // 每几秒执行一次
 	public void getMqContentToSend() {
 		try {
 			logger.info("定时任务开始执行.....");

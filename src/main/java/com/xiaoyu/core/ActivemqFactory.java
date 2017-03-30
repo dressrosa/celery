@@ -18,7 +18,7 @@ public enum ActivemqFactory {
 
 	INSTANCE;
 
-	ConnectionFactory factory = null;
+	private ConnectionFactory factory = null;
 	private final String userName = ActiveMQConnection.DEFAULT_USER;
 	private final String password = ActiveMQConnection.DEFAULT_PASSWORD;
 	private final String brokerURL = ActiveMQConnection.DEFAULT_BROKER_URL;

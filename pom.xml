@@ -4,7 +4,7 @@
 	<groupId>xiaoyu</groupId>
 	<artifactId>com.xiaoyu</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<parent> 
+	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.4.0.RELEASE</version>
@@ -46,7 +46,11 @@
 			<artifactId>guava</artifactId>
 			<version>19.0</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-all</artifactId>
+			<version>5.14.4</version>
+		</dependency>
 		<!-- common lang -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>

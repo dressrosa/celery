@@ -63,25 +63,25 @@ public class ConsumerServiceImpl implements ConsumerService {
 	}
 
 	@Override
-	@JmsListener(destination = "xiaoyu.third")
+	//@JmsListener(destination = "xiaoyu.third")
 	public void receiveWithSpringJms(String msg) {
 		System.out.println("接收消息xiaoyu.third::" + msg);
 	}
 
 	@Override
-	@JmsListener(destination = "xiaoyu.first")
+	//@JmsListener(destination = "xiaoyu.first")
 	public void receiveScheduledWithSB(String msg) {
 		System.out.println("定时接收消息xiaoyu.first:" + msg);
 	}
 
-	@JmsListener(destination = "xiaoyu.fourth")
-	@SendTo(value = "xiaoyu.first")
+	//@JmsListener(destination = "xiaoyu.fourth")
+	//@SendTo(value = "xiaoyu.first")
 	@Override
 	public String receiveAndSendTo(String msg) {
 		return " (xiaoyu.second:)" + msg;
 	}
 
-	@Scheduled(fixedRate = 10000)
+	//@Scheduled(fixedRate = 10000)
 	@Override
 	public void receiveWithTopic() {
 		Topic topic = null;

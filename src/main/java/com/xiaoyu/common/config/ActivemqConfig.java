@@ -19,8 +19,8 @@ import org.springframework.jms.annotation.EnableJms;
  * @description spring集成activemq
  * @version 1.0
  */
-@Configuration
-@EnableJms
+//@Configuration
+//@EnableJms
 public class ActivemqConfig {
 
 	@Bean

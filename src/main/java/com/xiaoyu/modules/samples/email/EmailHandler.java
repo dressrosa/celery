@@ -3,7 +3,7 @@
  */
 package com.xiaoyu.modules.samples.email;
 
-import com.xiaoyu.core.template.DefaultTemplate;
+import com.xiaoyu.core.template.DefaultAbstractQueueTemplate;
 
 /**
  * 2017年3月29日下午5:50:56
@@ -12,10 +12,10 @@ import com.xiaoyu.core.template.DefaultTemplate;
  * @description
  * @version 1.0
  */
-public class EmailHandler extends DefaultTemplate {
+public class EmailHandler extends DefaultAbstractQueueTemplate {
 
-	private EmailHandler(String topicName) {
-		super(topicName);
+	private EmailHandler(String destination) {
+		super(destination);
 	}
 
 	@Override

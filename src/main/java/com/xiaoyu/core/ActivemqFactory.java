@@ -12,19 +12,21 @@ import org.apache.activemq.ActiveMQConnectionFactory;
  * 
  * @author xiaoyu
  * @description 创建ConnectionFactory的枚举单例
- * @version 1.0
+ * 
  */
 public enum ActivemqFactory {
 
 	INSTANCE;
 
 	private ConnectionFactory factory = null;
+	// 全部取默认的,具体可以自行设置
 	private final String userName = ActiveMQConnection.DEFAULT_USER;
 	private final String password = ActiveMQConnection.DEFAULT_PASSWORD;
 	private final String brokerURL = ActiveMQConnection.DEFAULT_BROKER_URL;
 
 	private ActivemqFactory() {
 		factory = new ActiveMQConnectionFactory(userName, password, brokerURL);
+		
 
 	}
 

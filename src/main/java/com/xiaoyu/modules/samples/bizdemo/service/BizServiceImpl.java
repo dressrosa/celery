@@ -21,10 +21,10 @@ public class BizServiceImpl implements BizService {
 	@Autowired
 	private EmailService emailService;
 
-	@Override
 	public String register(String phone) {
 		final String loginName = phone;
-		System.out.println("存入数据库成功...");
+		System.out.println("业务处理,存入数据库成功...");
+		// 模拟进行进行邮件推送
 		emailService.putContentToMq(loginName + ",您好!欢迎来到召唤师峡谷,I'm xiaoyu,祝您乐在其中");
 		return "register success";
 	}

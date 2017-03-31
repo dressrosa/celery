@@ -18,9 +18,8 @@ import com.xiaoyu.modules.samples.email.api.EmailService;
 @Service
 public class EmailServiceImpl implements EmailService {
 
-	private EmailHandler handler = EmailHandler.instance();
+	private static final EmailHandler handler = EmailHandler.instance();
 
-	@Override
 	public String putContentToMq(String content) {
 		handler.produce(content);
 		return "put success";

@@ -3,14 +3,15 @@
  */
 package com.xiaoyu.modules.samples.email;
 
+import java.util.concurrent.TimeUnit;
+
 import com.xiaoyu.core.template.DefaultAbstractQueueTemplate;
 
 /**
  * 2017年3月29日下午5:50:56
  * 
  * @author xiaoyu
- * @description
- * @version 1.0
+ * @description 邮件业务的实现,继承queue类型,设定好destination和业务逻辑
  */
 public class EmailHandler extends DefaultAbstractQueueTemplate {
 
@@ -18,9 +19,16 @@ public class EmailHandler extends DefaultAbstractQueueTemplate {
 		super(destination);
 	}
 
-	@Override
+	/*
+	 * 根据
+	 */
 	public void handleMessage(String message) {
-		System.out.println("回执给用户的注册邮件,内容:" + message);
+		try {
+			TimeUnit.SECONDS.sleep(1);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println("回执给用户的注册邮件,内容:-----" + message);
 	}
 
 	private static final class Handler {

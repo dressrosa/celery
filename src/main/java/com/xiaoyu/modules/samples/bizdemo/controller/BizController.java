@@ -14,8 +14,7 @@ import com.xiaoyu.modules.samples.bizdemo.api.BizService;
  * 2017年3月29日下午5:33:15
  * 
  * @author xiaoyu
- * @description
- * @version 1.0
+ * @description 模拟一个业务,执行完后像用户回执一个邮件
  */
 @RestController
 public class BizController {

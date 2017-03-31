@@ -11,5 +11,8 @@ package com.xiaoyu.core;
  */
 public interface MessageCallback {
 
+	/**
+	 * 具体业务逻辑的实现
+	 */
 	public void handleMessage(String message);
 }

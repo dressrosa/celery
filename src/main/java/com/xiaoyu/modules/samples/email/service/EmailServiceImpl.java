@@ -21,7 +21,12 @@ public class EmailServiceImpl implements EmailService {
 	private static final EmailHandler handler = EmailHandler.instance();
 
 	public String putContentToMq(String content) {
-		handler.produce(content);
+		try {
+			handler.produce(content);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
 		return "put success";
 	}
 

@@ -34,11 +34,12 @@ public abstract class ActivemqTemplate {
 	private static final Logger logger = Logger.getLogger(ActivemqTemplate.class);
 
 	// 线程池来异步进行业务级别的消息处理
-	private static final ExecutorService msgHandlerPool = Executors.newFixedThreadPool(8);
+	private static final ExecutorService msgHandlerPool = Executors.newCachedThreadPool();
 
 	private Session session = null;// 多线程情况下导致session关闭 在同时有生产和消费的情况下,
 	// 因为生产者发送玩关闭,导致消费者出现session空异常 因为封装在一起,实际情况下消费者单独处理就行了
-
+	//改为threadlocal解决session问题
+	private ThreadLocal<Session> sLocal = new InheritableThreadLocal<>();
 	// private Topic topic = null;
 	// private Queue queue = null;
 	private Destination destination = null;
@@ -56,22 +57,24 @@ public abstract class ActivemqTemplate {
 			connection = factory.createConnection();
 			connection.start();
 			session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+			sLocal.set(session);
 			Creator creator = new Creator();
 			this.destination(creator);
-			MessageProducer producer = session.createProducer(destination);
+			MessageProducer producer = sLocal.get().createProducer(destination);
 			producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
-			msg = session.createTextMessage(message);
+			msg = sLocal.get().createTextMessage(message);
 			producer.send(msg);
 		} catch (JMSException e) {
 			e.printStackTrace();
 		} finally {
-			logger.info("关闭连接");
-			try {
-				if (connection != null)
-					connection.close();
-			} catch (JMSException e) {
-				e.printStackTrace();
-			}
+			//只要消费生产在一起 connection就不能关闭
+//			logger.info("关闭连接");
+//			try {
+//				if (connection != null)
+//					connection.close();
+//			} catch (JMSException e) {
+//				e.printStackTrace();
+//			}
 		}
 	}
 
@@ -92,10 +95,11 @@ public abstract class ActivemqTemplate {
 			connection = factory.createConnection();
 			connection.start();
 			session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+			sLocal.set(session);
 			Creator creator = new Creator();
 			this.destination(creator);
 
-			consumer = session.createConsumer(destination);
+			consumer = sLocal.get().createConsumer(destination);
 
 			// Message msg = null;
 			// for (;;) {//阻塞获取消息
@@ -146,8 +150,8 @@ public abstract class ActivemqTemplate {
 
 		public void createTopic(String topicName) {
 			try {
-				if (session != null)
-					destination = session.createTopic(topicName);
+				if (sLocal.get() != null)
+					destination = sLocal.get().createTopic(topicName);
 			} catch (JMSException e) {
 				e.printStackTrace();
 			}
@@ -155,9 +159,8 @@ public abstract class ActivemqTemplate {
 
 		public void createQueue(String queueName) {
 			try {
-				if (session != null)
-					destination = session.createQueue(queueName);
-
+				if (sLocal.get() != null)
+					destination = sLocal.get().createQueue(queueName);
 			} catch (JMSException e) {
 				e.printStackTrace();
 			}

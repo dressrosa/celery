@@ -22,7 +22,11 @@ public class ConsumerListener implements ApplicationListener<ApplicationReadyEve
 	@Override
 	public void onApplicationEvent(final ApplicationReadyEvent event) {
 		final EmailHandler handler = EmailHandler.instance();
-		handler.consume();
+		try {
+			handler.consume();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		System.out.println("消费者已启动进行消费...");
 	}
 

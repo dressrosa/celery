@@ -19,15 +19,11 @@ import com.xiaoyu.modules.samples.email.EmailHandler;
 @Component
 public class ConsumerListener implements ApplicationListener<ApplicationReadyEvent> {
 
-	@Override
-	public void onApplicationEvent(final ApplicationReadyEvent event) {
-		final EmailHandler handler = EmailHandler.instance();
-		try {
-			handler.consume();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		System.out.println("消费者已启动进行消费...");
-	}
+    @Override
+    public void onApplicationEvent(final ApplicationReadyEvent event) {
+        EmailHandler handler = EmailHandler.instance();
+        handler.consume();
+        System.out.println("消费者已启动进行消费...");
+    }
 
 }

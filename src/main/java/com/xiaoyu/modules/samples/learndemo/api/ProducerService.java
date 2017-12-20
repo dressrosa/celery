@@ -5,12 +5,12 @@ package com.xiaoyu.modules.samples.learndemo.api;
 
 public interface ProducerService {
 
-	public void sendNoSpringJms(String msg);
+    public void sendNoSpringJms(String msg);
 
-	public void sendWithSpringJms(String msg);
+    public void sendWithSpringJms(String msg);
 
-	public void sendScheduledWithSB();
+    public void sendScheduledWithSB();
 
-	public void sendWithTopic(String msg);
+    public void sendWithTopic(String msg);
 
 }

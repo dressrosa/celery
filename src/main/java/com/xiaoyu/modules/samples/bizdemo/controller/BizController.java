@@ -19,11 +19,11 @@ import com.xiaoyu.modules.samples.bizdemo.api.BizService;
 @RestController
 public class BizController {
 
-	@Autowired
-	private BizService bizService;
+    @Autowired
+    private BizService bizService;
 
-	@RequestMapping("register")
-	public String register(@RequestParam(required = true) String phone) {
-		return this.bizService.register(phone);
-	}
+    @RequestMapping("register")
+    public String register(@RequestParam(required = true) String phone) {
+        return bizService.register(phone);
+    }
 }

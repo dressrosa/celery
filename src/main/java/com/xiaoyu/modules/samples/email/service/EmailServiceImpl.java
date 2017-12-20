@@ -18,16 +18,16 @@ import com.xiaoyu.modules.samples.email.api.EmailService;
 @Service
 public class EmailServiceImpl implements EmailService {
 
-	private static final EmailHandler handler = EmailHandler.instance();
+    private static final EmailHandler handler = EmailHandler.instance();
 
-	public String putContentToMq(String content) {
-		try {
-			handler.produce(content);
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
-		return "put success";
-	}
+    @Override
+    public String putContentToMq(String content) {
+        try {
+            handler.produce(content);
+        } catch (final Exception e) {
+            e.printStackTrace();
+        }
+        return "put success";
+    }
 
 }

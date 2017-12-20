@@ -9,8 +9,6 @@ import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.command.ActiveMQQueue;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.jms.annotation.EnableJms;
 
 /**
  * 2016年9月13日上午10:18:16
@@ -19,20 +17,20 @@ import org.springframework.jms.annotation.EnableJms;
  * @description spring集成activemq
  * @version 1.0
  */
-//@Configuration
-//@EnableJms
+// @Configuration
+// @EnableJms
 public class ActivemqConfig {
 
-	@Bean
-	public Queue queue() {
-		Queue queue = new ActiveMQQueue("xiaoyu.first");
-		return queue;
-	}
+    @Bean
+    public Queue queue() {
+        final Queue queue = new ActiveMQQueue("xiaoyu.first");
+        return queue;
+    }
 
-	@Bean
-	public ActiveMQConnectionFactory factory() {
-		ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory(ActiveMQConnection.DEFAULT_USER,
-				ActiveMQConnection.DEFAULT_PASSWORD, ActiveMQConnection.DEFAULT_BROKER_URL);
-		return factory;
-	}
+    @Bean
+    public ActiveMQConnectionFactory factory() {
+        final ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory(ActiveMQConnection.DEFAULT_USER,
+                ActiveMQConnection.DEFAULT_PASSWORD, ActiveMQConnection.DEFAULT_BROKER_URL);
+        return factory;
+    }
 }

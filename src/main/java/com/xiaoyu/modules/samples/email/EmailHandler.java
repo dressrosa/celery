@@ -15,27 +15,28 @@ import com.xiaoyu.core.template.DefaultAbstractQueueTemplate;
  */
 public class EmailHandler extends DefaultAbstractQueueTemplate {
 
-	private EmailHandler(String destination) {
-		super(destination);
-	}
+    private EmailHandler(String destination) {
+        super(destination);
+    }
 
-	/*
-	 * 根据
-	 */
-	public void handleMessage(String message) {
-		try {
-			TimeUnit.SECONDS.sleep(1);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		System.out.println("回执给用户的注册邮件,内容:-----" + message);
-	}
+    /*
+     * 根据
+     */
+    @Override
+    public void handleMessage(String message) {
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (final InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("回执给用户的注册邮件,内容:-----" + message);
+    }
 
-	private static final class Handler {
-		public static final EmailHandler INSTANCE = new EmailHandler("xiaoyu.email");
-	}
+    private static final class Handler {
+        public static final EmailHandler INSTANCE = new EmailHandler("xiaoyu.email");
+    }
 
-	public static EmailHandler instance() {
-		return Handler.INSTANCE;
-	}
+    public static EmailHandler instance() {
+        return Handler.INSTANCE;
+    }
 }

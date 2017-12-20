@@ -18,18 +18,18 @@ import com.xiaoyu.core.MessageCallback;
  */
 public abstract class DefaultAbstractQueueTemplate extends ActivemqTemplate implements MessageCallback {
 
-	private String destinationName;
+    private final String destinationName;
 
-	public DefaultAbstractQueueTemplate(String destinationName) {
-		this.destinationName = destinationName;
-		super.setCallback(this);// 作为回调传入上层
+    public DefaultAbstractQueueTemplate(String destinationName) {
+        this.destinationName = destinationName;
+        super.setCallback(this);// 作为回调传入上层
 
-	}
+    }
 
-	@Override
-	protected ActivemqTemplate destination(Creator creator) {
-		creator.createQueue(destinationName);// 创建queue
-		return this;
-	}
+    @Override
+    protected ActivemqTemplate destination(Creator creator) {
+        creator.createQueue(destinationName);// 创建queue
+        return this;
+    }
 
 }

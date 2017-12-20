@@ -13,52 +13,52 @@ import com.xiaoyu.modules.samples.learndemo.api.ProducerService;
 @RestController
 public class MqTestController {
 
-	@Autowired
-	private ConsumerService consumerService;
+    @Autowired
+    private ConsumerService consumerService;
 
-	@Autowired
-	private ProducerService producerService;
+    @Autowired
+    private ProducerService producerService;
 
-	@RequestMapping("/")
-	public String main() {
-		return "hello world";
-	}
+    @RequestMapping("/")
+    public String main() {
+        return "hello world";
+    }
 
-	@RequestMapping("receiveNoSpringJms")
-	public String receiveNoSpringJms() {
-		this.consumerService.receiveNoSpringJms();
-		return "receiveNoSpringJms:" + "ok";
-	}
+    @RequestMapping("receiveNoSpringJms")
+    public String receiveNoSpringJms() {
+        consumerService.receiveNoSpringJms();
+        return "receiveNoSpringJms:" + "ok";
+    }
 
-	@RequestMapping("receiveAndSendTo")
-	public String receiveAndSendTo() {
-		String msg = null;
-		return this.consumerService.receiveAndSendTo(msg);
-	}
+    @RequestMapping("receiveAndSendTo")
+    public String receiveAndSendTo() {
+        final String msg = null;
+        return consumerService.receiveAndSendTo(msg);
+    }
 
-	@RequestMapping("receiveWithSpringJms")
-	public String receiveWithSpringJms() {
-		String msg = "1234";
-		this.consumerService.receiveWithSpringJms(msg);
-		return "receiveWithSpringJms:ok";
-	}
+    @RequestMapping("receiveWithSpringJms")
+    public String receiveWithSpringJms() {
+        final String msg = "1234";
+        consumerService.receiveWithSpringJms(msg);
+        return "receiveWithSpringJms:ok";
+    }
 
-	@RequestMapping("sendNoSpringJms")
-	public String producerNoSpringJms(String msg) {
-		this.producerService.sendNoSpringJms(msg);
-		return "sendNoSpringJms:ok";
-	}
+    @RequestMapping("sendNoSpringJms")
+    public String producerNoSpringJms(String msg) {
+        producerService.sendNoSpringJms(msg);
+        return "sendNoSpringJms:ok";
+    }
 
-	@RequestMapping("sendWithSpringJms")
-	public String sendWithSpringJms(String msg) {
-		this.producerService.sendWithSpringJms(msg);
-		return "sendWithSpringJms:ok";
-	}
+    @RequestMapping("sendWithSpringJms")
+    public String sendWithSpringJms(String msg) {
+        producerService.sendWithSpringJms(msg);
+        return "sendWithSpringJms:ok";
+    }
 
-	@RequestMapping("sendWithTopic")
-	public String sendWithTopic(String msg) {
-		this.producerService.sendWithTopic(msg);
-		return "sendWithTopic:ok";
-	}
+    @RequestMapping("sendWithTopic")
+    public String sendWithTopic(String msg) {
+        producerService.sendWithTopic(msg);
+        return "sendWithTopic:ok";
+    }
 
 }

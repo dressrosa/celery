@@ -5,13 +5,13 @@ package com.xiaoyu.modules.samples.learndemo.api;
 
 public interface ConsumerService {
 
-	public void receiveNoSpringJms();
+    public void receiveNoSpringJms();
 
-	public void receiveWithSpringJms(String msg);
+    public void receiveWithSpringJms(String msg);
 
-	public void receiveScheduledWithSB(String msg);
+    public void receiveScheduledWithSB(String msg);
 
-	public String receiveAndSendTo(String msg);
+    public String receiveAndSendTo(String msg);
 
-	public void receiveWithTopic();
+    public void receiveWithTopic();
 }

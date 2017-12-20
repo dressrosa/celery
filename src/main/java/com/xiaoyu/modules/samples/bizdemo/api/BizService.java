@@ -12,5 +12,5 @@ package com.xiaoyu.modules.samples.bizdemo.api;
  */
 public interface BizService {
 
-	public String register(String phone);
+    public String register(String phone);
 }

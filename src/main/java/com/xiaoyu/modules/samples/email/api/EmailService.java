@@ -11,9 +11,9 @@ package com.xiaoyu.modules.samples.email.api;
  */
 public interface EmailService {
 
-	/**
-	 * 将邮件内容推送到mq中
-	 */
-	public String putContentToMq(String content);
+    /**
+     * 将邮件内容推送到mq中
+     */
+    public String putContentToMq(String content);
 
 }

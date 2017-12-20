@@ -4,6 +4,7 @@
 package com.xiaoyu.core;
 
 import javax.jms.ConnectionFactory;
+
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
@@ -16,21 +17,20 @@ import org.apache.activemq.ActiveMQConnectionFactory;
  */
 public enum ActivemqFactory {
 
-	INSTANCE;
+    INSTANCE;
 
-	private ConnectionFactory factory = null;
-	// 全部取默认的,具体可以自行设置
-	private final String userName = ActiveMQConnection.DEFAULT_USER;
-	private final String password = ActiveMQConnection.DEFAULT_PASSWORD;
-	private final String brokerURL = ActiveMQConnection.DEFAULT_BROKER_URL;
+    private ConnectionFactory factory = null;
+    // 全部取默认的,具体可以自行设置
+    private final String USERNAME = ActiveMQConnection.DEFAULT_USER;
+    private final String PASSWORD = ActiveMQConnection.DEFAULT_PASSWORD;
+    private final String BROKER_URL = ActiveMQConnection.DEFAULT_BROKER_URL;
 
-	private ActivemqFactory() {
-		factory = new ActiveMQConnectionFactory(userName, password, brokerURL);
-		
+    private ActivemqFactory() {
+        factory = new ActiveMQConnectionFactory(USERNAME, PASSWORD, BROKER_URL);
 
-	}
+    }
 
-	public ConnectionFactory factory() {
-		return factory;
-	}
+    public ConnectionFactory factory() {
+        return factory;
+    }
 }

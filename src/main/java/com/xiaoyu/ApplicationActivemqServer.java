@@ -5,11 +5,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
-@EnableScheduling 
-public class SpringApplicationServer {
+@EnableScheduling
+public class ApplicationActivemqServer {
 
-	public static void main(String args[]) {
-		SpringApplication.run(SpringApplicationServer.class, args);
-	}
+    public static void main(String args[]) {
+        SpringApplication.run(ApplicationActivemqServer.class, args);
+    }
 
 }

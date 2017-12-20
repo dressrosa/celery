@@ -18,17 +18,17 @@ import com.xiaoyu.core.MessageCallback;
  */
 public abstract class DefaultAbstractTopicTemplate extends ActivemqTemplate implements MessageCallback {
 
-	private String destination;
+    private final String destination;
 
-	public DefaultAbstractTopicTemplate(String destination) {
-		this.destination = destination;
-		super.setCallback(this);
-	}
+    public DefaultAbstractTopicTemplate(String destination) {
+        this.destination = destination;
+        super.setCallback(this);
+    }
 
-	@Override
-	protected ActivemqTemplate destination(Creator creator) {
-		creator.createTopic(destination);// 创建topic
-		return this;
-	}
+    @Override
+    protected ActivemqTemplate destination(Creator creator) {
+        creator.createTopic(destination);// 创建topic
+        return this;
+    }
 
 }

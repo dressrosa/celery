@@ -27,7 +27,6 @@ public enum ActivemqFactory {
 
     private ActivemqFactory() {
         factory = new ActiveMQConnectionFactory(USERNAME, PASSWORD, BROKER_URL);
-
     }
 
     public ConnectionFactory factory() {

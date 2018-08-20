@@ -6,7 +6,7 @@ package com.xiaoyu.modules.samples.email.service;
 import org.springframework.stereotype.Service;
 
 import com.xiaoyu.modules.samples.email.EmailHandler;
-import com.xiaoyu.modules.samples.email.api.EmailService;
+import com.xiaoyu.modules.samples.email.api.EmailTestService;
 
 /**
  * 2017年3月29日下午4:16:41
@@ -16,7 +16,7 @@ import com.xiaoyu.modules.samples.email.api.EmailService;
  * @version 1.0
  */
 @Service
-public class EmailServiceImpl implements EmailService {
+public class EmailTestServiceImpl implements EmailTestService {
 
     private static final EmailHandler handler = EmailHandler.instance();
 

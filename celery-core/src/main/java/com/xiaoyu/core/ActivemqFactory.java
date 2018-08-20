@@ -19,7 +19,8 @@ public enum ActivemqFactory {
 
     INSTANCE;
 
-    private ConnectionFactory factory = null;
+    private ActiveMQConnectionFactory factory = null;
+    private final Integer SEND_TIMEOUT = 20000;
     // 全部取默认的,具体可以自行设置
     private final String USERNAME = ActiveMQConnection.DEFAULT_USER;
     private final String PASSWORD = ActiveMQConnection.DEFAULT_PASSWORD;
@@ -27,6 +28,8 @@ public enum ActivemqFactory {
 
     private ActivemqFactory() {
         factory = new ActiveMQConnectionFactory(USERNAME, PASSWORD, BROKER_URL);
+        factory.setSendTimeout(SEND_TIMEOUT);
+        
     }
 
     public ConnectionFactory factory() {

@@ -9,7 +9,7 @@ package com.xiaoyu.modules.samples.email.api;
  * @author xiaoyu
  * @description
  */
-public interface EmailService {
+public interface EmailTestService {
 
     /**
      * 将邮件内容推送到mq中

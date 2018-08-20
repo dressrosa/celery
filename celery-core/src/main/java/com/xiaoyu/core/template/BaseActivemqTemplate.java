@@ -54,7 +54,8 @@ abstract class BaseActivemqTemplate {
      */
     private Session session = null;
     /**
-     * 因为生产者发送玩关闭,导致消费者出现session空异常 因为封装在一起,实际情况下消费者单独处理就行了 现改为threadlocal解决session问题
+     * 因为生产者发送玩关闭,导致消费者出现session空异常 因为封装在一起,实际情况下消费者单独处理就行了
+     * 现改为threadlocal解决session问题
      */
     private final ThreadLocal<Session> sLocal = new InheritableThreadLocal<>();
     /**
@@ -65,10 +66,19 @@ abstract class BaseActivemqTemplate {
     // private MessageProducer producer = null;//多线程情况下导致producer关闭
     private MessageConsumer consumer = null;
 
+    public void produce(String message) {
+        HANDLER_POOL.submit(new Runnable() {
+            @Override
+            public void run() {
+                doProduce(message);
+            }
+        });
+    }
+
     /**
      * push消息到mq里面
      */
-    public void produce(String message) {
+    private void doProduce(String message) {
         final ConnectionFactory factory = ActivemqFactory.INSTANCE.factory();
         Connection connection = null;
         try {
